@@ -1,6 +1,9 @@
 import { LitElement, html, css } from 'https://unpkg.com/lit-element?module';
 import { styleMap } from 'https://unpkg.com/lit-html/directives/style-map?module';
 
+import * as Utils from '/js/utils.js';
+
+
 class RandomColorButton extends LitElement {
 
   static get properties() {
@@ -32,13 +35,7 @@ class RandomColorButton extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    const thisRect = this.getBoundingClientRect();
-    const parentRect = this.parentNode.getBoundingClientRect();
-    const left = Math.random() * (parentRect.width - thisRect.width);
-    const top = Math.random() * (parentRect.height - thisRect.height);
-
-    this.style.left = `${left}px`;
-    this.style.top = `${top}px`;
+    Utils.randomPosition(this);
   }
 
   render() {
